@@ -154,13 +154,34 @@
           <el-input v-model="form.studentClass" placeholder="请输入学生班级" />
         </el-form-item>
         <el-form-item label="评价类型" prop="evaluationType">
-          <el-input v-model="form.evaluationType" placeholder="请输入评价类型" />
+          <el-select v-model="form.evaluationType" placeholder="请选择评价类型" clearable>
+            <el-option
+              v-for="item in evaluationTypeOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="评分项" prop="scoringItem">
-          <el-input v-model="form.scoringItem" placeholder="请输入评价类型" />
+          <el-select v-model="form.scoringItem" placeholder="请选择评分项" clearable>
+            <el-option
+              v-for="item in scoringItemOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="加扣分数" prop="score">
-          <el-input v-model="form.score" placeholder="请输入加扣分数" />
+          <el-input-number
+            v-model="form.score"
+            placeholder="请输入加扣分数"
+            :min="-100"
+            :max="100"
+            :step="1"
+            controls-position="right">
+          </el-input-number>
         </el-form-item>
         <el-form-item label="备注">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
@@ -188,6 +209,32 @@ export default {
       // 选中数组
       ids: [],
       dictionary:[ { label: '未审核', value: '0'}, { label: '审核通过', value: '1'}],
+      // 评价类型选项
+      evaluationTypeOptions: [
+        { label: '不注意安全', value: '不注意安全' },
+        { label: '不按时完成任务', value: '不按时完成任务' },
+        { label: '课堂表现', value: '课堂表现' },
+        { label: '作业完成', value: '作业完成' },
+        { label: '考试成绩', value: '考试成绩' },
+        { label: '纪律表现', value: '纪律表现' },
+        { label: '参与度', value: '参与度' },
+        { label: '创新思维', value: '创新思维' },
+        { label: '团队合作', value: '团队合作' },
+        { label: '学习态度', value: '学习态度' },
+      ],
+      // 评分项选项
+      scoringItemOptions: [
+        { label: '玩危险游戏', value: '玩危险游戏' },
+        { label: '不按时完成作业', value: '不按时完成作业' },
+        { label: '积极发言', value: '积极发言' },
+        { label: '完成作业', value: '完成作业' },
+        { label: '考试优秀', value: '考试优秀' },
+        { label: '遵守纪律', value: '遵守纪律' },
+        { label: '主动参与讨论', value: '主动参与讨论' },
+        { label: '提出创新想法', value: '提出创新想法' },
+        { label: '协助同学', value: '协助同学' },
+        { label: '学习认真', value: '学习认真' },
+      ],
       // 非单个禁用
       single: true,
       // 非多个禁用
