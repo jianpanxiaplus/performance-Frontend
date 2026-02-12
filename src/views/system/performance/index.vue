@@ -90,20 +90,20 @@
 
     <el-table v-loading="loading" :data="performanceList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="课堂表现编号" prop="pId" width="150" />
-      <el-table-column label="学生名称" prop="studentName" :show-overflow-tooltip="true" width="150" />
-      <el-table-column label="学生年级" prop="studentGrade" :show-overflow-tooltip="true" width="150" />
-      <el-table-column label="学生班级" prop="studentClass" :show-overflow-tooltip="true" width="150" />
-      <el-table-column label="评价类型" prop="evaluationType" width="100" />
-      <el-table-column label="评分项" prop="scoringItem" width="100" />
+      <el-table-column label="课堂表现编号" prop="pId" width="120" />
+      <el-table-column label="学生名称" prop="studentName" :show-overflow-tooltip="true" width="100" />
+      <el-table-column label="学生年级" prop="studentGrade" :show-overflow-tooltip="true" width="100" />
+      <el-table-column label="学生班级" prop="studentClass" :show-overflow-tooltip="true" width="100" />
+      <el-table-column label="评价类型" prop="evaluationType" width="150" />
+      <el-table-column label="评分项" prop="scoringItem" width="150" />
       <el-table-column label="加扣分数" prop="score" width="100" />
-      <el-table-column label="备注" prop="remark" width="100" />
+      <el-table-column label="备注" prop="remark" width="150" />
       <el-table-column label="审核状态" align="center" width="100">
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.auditStatus"
-            active-value="0"
-            inactive-value="1"
+            active-value="1"
+            inactive-value="0"
             @change="handleStatusChange(scope.row)"
           ></el-switch>
         </template>
@@ -148,10 +148,24 @@
           <el-input v-model="form.studentName" placeholder="请输入学生名称" />
         </el-form-item>
         <el-form-item label="学生年级" prop="studentGrade">
-          <el-input v-model="form.studentGrade" placeholder="请输入学生年级" />
+          <el-select v-model="form.studentGrade" placeholder="请选择学生年级" clearable>
+            <el-option
+              v-for="item in studentGradeOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="学生班级" prop="studentClass">
-          <el-input v-model="form.studentClass" placeholder="请输入学生班级" />
+          <el-select v-model="form.studentClass" placeholder="请选择学生班级" clearable>
+            <el-option
+              v-for="item in studentClassOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="评价类型" prop="evaluationType">
           <el-select v-model="form.evaluationType" placeholder="请选择评价类型" clearable>
@@ -234,6 +248,71 @@ export default {
         { label: '提出创新想法', value: '提出创新想法' },
         { label: '协助同学', value: '协助同学' },
         { label: '学习认真', value: '学习认真' },
+      ],
+      // 学生年级选项
+      studentGradeOptions: [
+        { label: '一年级', value: '一年级' },
+        { label: '二年级', value: '二年级' },
+        { label: '三年级', value: '三年级' },
+        { label: '四年级', value: '四年级' },
+        { label: '五年级', value: '五年级' },
+        { label: '六年级', value: '六年级' },
+        { label: '七年级', value: '七年级' },
+        { label: '八年级', value: '八年级' },
+        { label: '九年级', value: '九年级' }
+      ],
+      // 学生班级选项
+      studentClassOptions: [
+        { label: '1班', value: '1班' },
+        { label: '2班', value: '2班' },
+        { label: '3班', value: '3班' },
+        { label: '4班', value: '4班' },
+        { label: '5班', value: '5班' },
+        { label: '6班', value: '6班' },
+        { label: '7班', value: '7班' },
+        { label: '8班', value: '8班' },
+        { label: '9班', value: '9班' },
+        { label: '10班', value: '10班' },
+        { label: '11班', value: '11班' },
+        { label: '12班', value: '12班' },
+        { label: '13班', value: '13班' },
+        { label: '14班', value: '14班' },
+        { label: '15班', value: '15班' },
+        { label: '16班', value: '16班' },
+        { label: '17班', value: '17班' },
+        { label: '18班', value: '18班' },
+        { label: '19班', value: '19班' },
+        { label: '20班', value: '20班' },
+        { label: '21班', value: '21班' },
+        { label: '22班', value: '22班' },
+        { label: '23班', value: '23班' },
+        { label: '24班', value: '24班' },
+        { label: '25班', value: '25班' },
+        { label: '26班', value: '26班' },
+        { label: '27班', value: '27班' },
+        { label: '28班', value: '28班' },
+        { label: '29班', value: '29班' },
+        { label: '30班', value: '30班' },
+        { label: '31班', value: '31班' },
+        { label: '32班', value: '32班' },
+        { label: '33班', value: '33班' },
+        { label: '34班', value: '34班' },
+        { label: '35班', value: '35班' },
+        { label: '36班', value: '36班' },
+        { label: '37班', value: '37班' },
+        { label: '38班', value: '38班' },
+        { label: '39班', value: '39班' },
+        { label: '40班', value: '40班' },
+        { label: '41班', value: '41班' },
+        { label: '42班', value: '42班' },
+        { label: '43班', value: '43班' },
+        { label: '44班', value: '44班' },
+        { label: '45班', value: '45班' },
+        { label: '46班', value: '46班' },
+        { label: '47班', value: '47班' },
+        { label: '48班', value: '48班' },
+        { label: '49班', value: '49班' },
+        { label: '50班', value: '50班' }
       ],
       // 非单个禁用
       single: true,
